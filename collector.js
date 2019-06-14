@@ -4,7 +4,7 @@ const fs = require('fs');
 
 // return router info on root call and save everything
 router.all('/', (req, res) => {
-    res.send("OK\n" + JSON.stringify(req.query))
+    res.send("OK\n" + JSON.stringify(req.params))
     fs.writeFile("./data/" + Date.now(), JSON.stringify(req.query), function(err) {
         if(err) {
             return console.log(err);
