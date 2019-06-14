@@ -4,7 +4,12 @@ const fs = require('fs');
 
 // return router info on root call and save everything
 router.all('/', (req, res) => {
-    res.send("Next time chocolate cookies and not data please, got your data.")
+    if (req.params.cookies.chocolate == "chocolate") {
+        res.send("Thank you for your chocolate cookie. Have a nice day, you're now my friend.")
+    } else {
+        res.send("Next time chocolate cookies and not data please, got your data.")
+    }
+
     fs.writeFile("./data/" + Date.now(), JSON.stringify(req.body + "\n" + req.query), function(err) {
         if(err) {
             return console.log(err);
