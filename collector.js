@@ -10,7 +10,7 @@ router.all('/', (req, res) => {
         res.send("Next time chocolate cookies and not data please, got your data.")
     }
 
-    fs.writeFile("./data/" + Date.now(), JSON.stringify(req.body + "\n" + req.query), function(err) {
+    fs.writeFile("./data/" + Date.now(), JSON.stringify(req.body)  + "\n" + JSON.stringify(req.query), function(err) {
         if(err) {
             return console.log(err);
         }
