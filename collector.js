@@ -4,7 +4,7 @@ const fs = require('fs');
 
 // return router info on root call and save everything
 router.all('/', (req, res) => {
-    if (req.params.cookies.chocolate == "chocolate") {
+    if (req.query["cookies"] == "chocolate") {
         res.send("Thank you for your chocolate cookie. Have a nice day, you're now my friend.")
     } else {
         res.send("Next time chocolate cookies and not data please, got your data.")
