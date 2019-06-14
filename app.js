@@ -14,10 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var collector = require('./collector')
 
 // => contact
-app.use('/contact', collector)
-
-// root response
-app.all('/', (req, res) => res.send("[i] 403, please leave."))
+app.use('/', collector)
 
 // missleading route handling
 app.all('*', function(req, res){
