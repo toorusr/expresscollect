@@ -11,8 +11,10 @@ var fs = require('fs');
 router.all('/', (req, res) => {
     // check if the requester gives me cookies
     if (req.query["cookies"] == "chocolate") {
+        // if there is a cookies attribut containing chocolate in the query
         res.send("Thank you for your chocolate cookie. Have a nice day, you're now my friend.")
     } else {
+        // normally, if anything else got submitted
         res.send("Next time chocolate cookies and not data please, got your data.")
     }
     // write req.query and req.body as stringified json objects to ./data/$timestamp
