@@ -18,8 +18,7 @@ app.use('/', collector)
 
 // missleading route handling
 app.all('*', function(req, res){
-    // res.send('Route not found.')
-    res.status(404).end()
+    res.send('Here is nothing more than a 404.')
 });
 
 // listen to port
