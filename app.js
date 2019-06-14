@@ -1,5 +1,6 @@
 // MIT license
-// @toorusr
+// @toorusr, https://max.berlin
+// Express Collector
 
 const port = 1338 // server port
 
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 // collector
 var collector = require('./collector')
 
-// => contact
+//  / => collector.js
 app.use('/', collector)
 
 // missleading route handling
