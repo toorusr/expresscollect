@@ -13,5 +13,5 @@ exports.load = function (token, id) {
 
 // send text with data to chat
 exports.sendMessage = function (data) {
-    https.get('https://api.telegram.org/bot' + token + '/sendMessage?chat_id=' + id + '&text=' + data)
+    https.get('https://api.telegram.org/bot' + token + '/sendMessage?chat_id=' + id + '&parse_mode=Markdown' + '&text=' + data)
 }
