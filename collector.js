@@ -22,19 +22,34 @@ router.all('/', (req, res) => {
         // normally, if anything else got submitted
         res.send("Next time chocolate cookies and not data please, got your data.")
     }
-    // write req.query and req.body as stringified json objects to ./data/$timestamp
-    fs.writeFile("./data/" + Date.now(), JSON.stringify(req.body)  + "\n" + JSON.stringify(req.query), function(err) {
-        if(err) {
-            // check if something somehow happened
-            return console.log(err);
-        }
-        // log the reqest data that we saved to the console
-        console.log(Date() + " => " + JSON.stringify(req.body) + "\t" + JSON.stringify(req.query));
+    if (req.query["form"] == "newsletter") {
+      fs.writeFile("./newsletters/" + Date.now(), JSON.stringify(req.body)  + "\n" + JSON.stringify(req.query), function(err) {
+          if(err) {
+              // check if something somehow happened
+              return console.log(err);
+          }
+          // log the reqest data that we saved to the console
+          console.log(Date() + " => " + JSON.stringify(req.body) + "\t" + JSON.stringify(req.query));
 
-        // send to telegram chat
-        tb_data = "Time:\n" + Date() + "\nName:\n" + req.body.name + "\nEmail:\n" + req.body.email + "\nReason:\n" + req.body.reason + "\nMessage:\n" + req.body.message
-        tb.sendMessage(tb_data)
-    });
+          // send to telegram chat
+          tb_data = "**Newsletter Subscription**\n*Time*\n" + Date() + "\n*Name*\n" + req.body.name + "\n*Email*\n" + req.body.email
+          console.log(tb.sendMessage(tb_data));
+      });
+    } else {
+      // write req.query and req.body as stringified json objects to ./data/$timestamp
+      fs.writeFile("./data/" + Date.now(), JSON.stringify(req.body)  + "\n" + JSON.stringify(req.query), function(err) {
+          if(err) {
+              // check if something somehow happened
+              return console.log(err);
+          }
+          // log the reqest data that we saved to the console
+          console.log(Date() + " => " + JSON.stringify(req.body) + "\t" + JSON.stringify(req.query));
+
+          // send to telegram chat
+          tb_data = "\n*Time*\n" + Date() + "\n*Name*\n" + req.body.name + "\n*Email*\n" + req.body.email + "\n*Reason*\n" + req.body.reason + "\n*Message*\n" + req.body.message
+          console.log(tb.sendMessage(tb_data));
+      });
+    }
 })
 
 // export this express router
