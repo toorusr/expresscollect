@@ -19,7 +19,7 @@ app.use('/', collector)
 
 // missleading route handling
 app.all('*', function(req, res){
-    res.send('Here is nothing more than a 404.')
+    res.return('https://max.berlin')
 });
 
 // listen to port
