@@ -20,7 +20,7 @@ router.all('/', (req, res) => {
         res.send("Thank you for your chocolate cookie. Have a nice day, you're now my friend.")
     } else {
         // normally, if anything else got submitted
-        res.send("Next time chocolate cookies and not data please, got your data.")
+        res.sendStatus(200)
     }
     if (req.query["form"] == "newsletter") {
       fs.writeFile("./newsletters/" + Date.now(), JSON.stringify(req.body)  + "\n" + JSON.stringify(req.query), function(err) {
